@@ -1,72 +1,86 @@
 # 27 Sep 2025
-# human vs computer
+
 import random
 
-com_score = 0
-human_score = 0
+class Game:
 
-while True:
+    def __init__(self, com_score=None, human_score=None):
+        self.com_score = 0
+        self.human_score = 0
 
-    com = random.choice(["rock", "paper", "scissors"])
-    # for debugging purpose
-    # print(f"com choose: {com}") 
 
-    try:
+    def main_menu(self):
         print("choose any of these")
         print("1: rock")
         print("2: paper")
         print("3: scissors")
-        human = int(input())
-    
+        
 
-        # even logic
+    def game_logic(self):
+        com = random.choice(["rock", "paper", "scissors"])
+        human = int(input())
+        
         if human == 1 and com == "rock":
-            com_score += 1
-            human_score += 1
+            self.com_score += 1
+            self.human_score += 1
             print("even")
         elif human == 2 and com == "paper":
-            com_score += 1
-            human_score += 1
+            self.com_score += 1
+            self.human_score += 1
             print("even")
         elif human ==3 and com == "scissors":
-            com_score += 1
-            human_score += 1
+            self.com_score += 1
+            self.human_score += 1
             print("even")
 
         # human win logic
         elif human == 1 and com == "scissors":
-            human_score += 1
+            self.human_score += 1
             print("win")
         elif human == 2 and com == "rock":
-            human_score += 1
+            self.human_score += 1
             print("win")
         elif human == 3 and com == "paper":
-            human_score += 1
+            self.human_score += 1
             print("win")
 
         # human lose logic
         elif human == 1 and com == "paper":
-            com_score += 1
+            self.com_score += 1
             print("lose")
         elif human == 2 and com == "scissors":
-            com_score += 1
+            self.com_score += 1
             print("lose")
         elif human == 3 and com == "rock":
-            com_score += 1
+            self.com_score += 1
             print("lose")
 
-        if com_score == 3 and human_score < 3:
-            print("you lose")
-            break
-        elif human_score == 3 and com_score < 3:
-            print("you won")
-            break
-        elif com_score == 3 and human_score == 3:
-            print("DRAW!!")
-            break
+    
+    def main(self):
+        while True:
+            try:
+                self.main_menu()
+            except:
+                print("please input number 1-3")
 
-    except:
-        print("please input number 1-3")
+            self.game_logic()
 
-    print(f"com score: {com_score}")
-    print(f"human score: {human_score}")
+            if self.com_score == 3 and self.human_score < 3:
+                print("you lose")
+                break
+            elif self.human_score == 3 and self.com_score < 3:
+                print("you won")
+                break
+            elif self.com_score == 3 and self.human_score == 3:
+                print("DRAW!!")
+                break
+
+        print(f"com score: {self.com_score}")
+        print(f"human score: {self.human_score}")
+
+game = Game()
+
+if __name__ == '__main__':
+    game.main()
+
+
