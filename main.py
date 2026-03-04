@@ -7,6 +7,8 @@ class Game:
     def __init__(self, com_score=None, human_score=None):
         self.com_score = 0
         self.human_score = 0
+        self.com = None
+        self.human = None
 
 
     def main_menu(self):
@@ -14,56 +16,62 @@ class Game:
         print("1: rock")
         print("2: paper")
         print("3: scissors")
+
+        self.com = random.choice(["rock", "paper", "scissors"])
+        self.human = int(input())
         
 
     def game_logic(self):
-        com = random.choice(["rock", "paper", "scissors"])
-        human = int(input())
+        # com = random.choice(["rock", "paper", "scissors"])
+        # human = int(input())
         
-        if human == 1 and com == "rock":
+        if self.human == 1 and self.com == "rock":
             self.com_score += 1
             self.human_score += 1
-            print("even")
-        elif human == 2 and com == "paper":
+            print("### even ###")
+        elif self.human == 2 and self.com == "paper":
             self.com_score += 1
             self.human_score += 1
-            print("even")
-        elif human ==3 and com == "scissors":
+            print("### even ###")
+        elif self.human ==3 and self.com == "scissors":
             self.com_score += 1
             self.human_score += 1
-            print("even")
+            print("### even ###")
 
         # human win logic
-        elif human == 1 and com == "scissors":
+        elif self.human == 1 and self.com == "scissors":
             self.human_score += 1
-            print("win")
-        elif human == 2 and com == "rock":
+            print("### win ###")
+        elif self.human == 2 and self.com == "rock":
             self.human_score += 1
-            print("win")
-        elif human == 3 and com == "paper":
+            print("### win ###")
+        elif self.human == 3 and self.com == "paper":
             self.human_score += 1
-            print("win")
+            print("### win ###")
 
         # human lose logic
-        elif human == 1 and com == "paper":
+        elif self.human == 1 and self.com == "paper":
             self.com_score += 1
-            print("lose")
-        elif human == 2 and com == "scissors":
+            print("### lose ###")
+        elif self.human == 2 and self.com == "scissors":
             self.com_score += 1
-            print("lose")
-        elif human == 3 and com == "rock":
+            print("### lose ###")
+        elif self.human == 3 and self.com == "rock":
             self.com_score += 1
-            print("lose")
+            print("### lose ###")
 
     
     def main(self):
         while True:
             try:
                 self.main_menu()
-            except:
+                if self.human > 3:
+                    print("please input number 1-3")
+            except ValueError:
                 print("please input number 1-3")
 
             self.game_logic()
+            self.human = None
 
             if self.com_score == 3 and self.human_score < 3:
                 print("you lose")
@@ -75,8 +83,11 @@ class Game:
                 print("DRAW!!")
                 break
 
-        print(f"com score: {self.com_score}")
-        print(f"human score: {self.human_score}")
+            print("###############################")
+            # print(f"{self.human}")
+            print(f"com score: {self.com_score}")
+            print(f"human score: {self.human_score}")
+            print("###############################")
 
 game = Game()
 
